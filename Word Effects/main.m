@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
         // 255 unit long array of characters
         char inputChars[255];
         char inputNumber[255];
-            NSString *finalString = @"";
+            NSString *finalString = [[NSString alloc]init];
             
         printf("Input a string: ");
         // limit input to max 255 characters
@@ -33,9 +33,9 @@ int main(int argc, const char * argv[]) {
         printf("Your number is %s\n", inputNumber);
         
         // convert char array to an NSString object
-        NSString *inputString = [NSString stringWithUTF8String:inputChars];
-        NSString *inputNumberString = [NSString stringWithUTF8String:inputNumber];
-            NSString *newString = @"";
+        NSMutableString *inputString = [NSMutableString stringWithUTF8String:inputChars];
+        NSMutableString *inputNumberString = [NSMutableString stringWithUTF8String:inputNumber];
+            NSString *newString = [[NSString alloc]init];
             
             int value = 0 ;
             
@@ -66,6 +66,12 @@ int main(int argc, const char * argv[]) {
                 break;
             case 6:
                 finalString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                break;
+            case 7:
+                newString = [inputString substringToIndex:[inputString length] - 1];
+                for (int i = 0; i < [newString length]; i++) {
+                    finalString = [finalString stringByAppendingString:@"🥛"];
+                }
                 break;
             default:
                 break;
