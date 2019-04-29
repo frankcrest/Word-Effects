@@ -16,7 +16,8 @@ int main(int argc, const char * argv[]) {
         // 255 unit long array of characters
         char inputChars[255];
         char inputNumber[255];
-        
+            NSString *finalString = @"";
+            
         printf("Input a string: ");
         // limit input to max 255 characters
         fgets(inputChars, 255, stdin);
@@ -29,14 +30,49 @@ int main(int argc, const char * argv[]) {
         fgets(inputNumber, 255, stdin);
         NSLog(@"%s", inputNumber);
             
-        printf("Your string is %s\n", inputNumber);
-            
+        printf("Your number is %s\n", inputNumber);
+        
         // convert char array to an NSString object
         NSString *inputString = [NSString stringWithUTF8String:inputChars];
         NSString *inputNumberString = [NSString stringWithUTF8String:inputNumber];
+            NSString *newString = @"";
+            
+            int value = 0 ;
+            
+            int num = [inputNumberString intValue];
+        switch (num) {
+            case 1:
+                finalString = [inputString uppercaseString];
+                break;
+            case 2:
+                finalString = [inputString lowercaseString];
+                break;
+            case 3 :
+                value = [inputString intValue];
+                finalString = [NSString stringWithFormat:@"%d", value];
+                NSLog(@"final number is %@", finalString);
+                break;
+            case 4:
+                finalString = [inputString stringByAppendingString:@"eh?"];
+                break;
+            case 5:
+                newString = [inputString substringToIndex:[inputString length] - 1];
+                if ([newString hasSuffix:@"?"]){
+                    NSLog(@"has question");
+                    finalString = @"I don't know";
+                } else if ([newString hasSuffix:@"!"]){
+                    finalString = @"Whoa, calm down!";
+                }
+                break;
+            case 6:
+                finalString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                break;
+            default:
+                break;
+        }
+            
         // print NSString object
-        NSLog(@"Input was: %@", inputString);
-            NSLog(@"Input was: %@", inputNumberString);
+        NSLog(@"Manipulated string is: %@", finalString);
         }
         
     }
